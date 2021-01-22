@@ -34,7 +34,7 @@ badMovies = FILTER avgRatings BY avgRating < 2.0;
 
 namedBadMovies = JOIN badMovies BY movieID, nameLookup BY movieID;
 
-finalResults FOREACH namedBadMovies GENERATE nameLookup: movieTitle AS movieName, badMovies :: avgRating AS avgRating, badMovies:: numRatings AS numRatings
+finalResults = FOREACH namedBadMovies GENERATE nameLookup:: movieTitle AS movieName, badMovies :: avgRating AS avgRating, badMovies:: numRatings AS numRatings
 
 FinalResultsSorted = ORDER finalResults BY numRatings DESC;
 
